@@ -1,0 +1,4 @@
+forever start app.js
+had to set iptables so traffic from 80 routes to 3000, which express is listening to.
+
+sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-ports 8000
