@@ -1,0 +1,22 @@
+{
+  "name": "gamejam",
+  "version": "1.0.0",
+  "description": "jammin games",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ocj2016/gamejam.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ocj2016/gamejam/issues"
+  },
+  "homepage": "https://github.com/ocj2016/gamejam",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
