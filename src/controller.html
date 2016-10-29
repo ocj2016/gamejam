@@ -1,9 +1,81 @@
 <html>
-     <head>
-          <script type="text/javascript" src="https://www.airconsole.com/api/airconsole-1.5.0.js"></script>
-          <script type="text/javascript" src="/controller.bundle.js"></script>
-     </head>
-<body>
-<h1 id = "value" style = "color:white;margin-top:150px"></h1>
-</body>
+    <head>
+        <script type="text/javascript" src="https://www.airconsole.com/api/airconsole-1.5.0.js"></script>
+        <script type="text/javascript" src="/controller.bundle.js"></script>
+        <style type="text/css">
+            @font-face {
+            font-family: 'PressStart2P';
+            src: url('PressStart2P.ttf') format('truetype');
+            text-align: center;
+            }
+            html, body {
+            height: 100%;
+            margin: 0px;
+            font-family: 'PressStart2P', sans-serif;
+            color: white;
+            text-align: center;
+            background-color: black;
+            }
+            .button {
+            display: inline-block;
+            height: 45%;
+            width: 98%;            
+            position: relative;
+            }
+
+            .btn-left {
+                background-color: tomato
+            }
+            .btn-right {
+                background-color: seagreen;
+            }
+
+            .btn-dash {
+                background-color: blue;
+            }
+            .button_label {
+            position: absolute;
+            left: 0px;
+            width: 100%;
+            top: 50%;
+            margin-top: -6px;
+            font-size: 20px;
+            }
+            #player_id {
+            position: absolute;
+            top: 50%;
+            left: 0%;
+            width: 100%;
+            margin-top: -8px;
+            color: #777;
+            }
+            .flex {
+                display: flex;
+            }
+            .flex-column {
+                display: flex;
+                flex-direction: column;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="flex-column">
+            <div class="flex">
+                <div style="height: 1%"></div>
+                <div id='div-left' class="button btn-left">
+                    <div class="button_label">LEFT</div>
+                </div>
+                <div style="height: 8%"></div>
+                <div id='div-right' class="button btn-right">
+                    <div class="button_label">RIGHT</div>
+                </div>
+                <div id="player_id">It's a 2 player game</div>
+            </div>
+            <div class="flex">
+                <div style="height: 250px;" id='div-dash' class="button btn-dash">
+                    <div class="button_label">DASH</div>
+                </div>
+            </div>
+        </div>
+    </body>
 </html>

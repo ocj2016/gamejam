@@ -35,5 +35,12 @@ airconsole.onConnect = deviceId => {
 };
 
 airconsole.onMessage = (deviceId, data) => {
-    t[deviceId].setText(`I am receiving ${data} from  device ${deviceId}`);
+	console.log("data: ", data);
+	if(data.dash !== undefined) {
+		t[deviceId].setText(`DASH ${data.dash} from  device ${deviceId}`);	
+	}
+	if(data.move !== undefined) {
+		t[deviceId].setText(`MOVE ${data.move} from  device ${deviceId}`);
+	}
+    
 };
