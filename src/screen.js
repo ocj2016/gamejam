@@ -10,6 +10,7 @@ import 'file?name=assets/[name].[ext]!../assets/ball.png';
 
 import Witch from './witch';
 import Quaffle from './quaffle';
+import { createGoals } from './goal';
 
 const w = [];
 let q;
@@ -38,7 +39,14 @@ function create(){
 
 	q = new Quaffle(game);
 
+	createGoals(game);
+
 	cursors = game.input.keyboard.createCursorKeys();
+
+	q.s.body.onCollide = new Phaser.Signal();
+	// q.s.body.onCollide.add((sprite1, sprite2) => {
+	// 	console.log(sprite1, sprite2);
+	// });
 }
 
 function update(){
@@ -47,6 +55,10 @@ function update(){
 	}
 	w.forEach(w => {
 		w.update(game, acInputs[w.deviceId] || keyboardDirection());
+	});
+
+	w.forEach(w => {
+		game.physics.arcade.collide(w.s, q.s);
 	});
 }
 
@@ -58,7 +70,7 @@ function keyboardDirection(){
 			0;
 }
 
-var airconsole = new AirConsole();
+const airconsole = new AirConsole();
 
 airconsole.onConnect = deviceId => {
 	w.push(new Witch(game, deviceId));
