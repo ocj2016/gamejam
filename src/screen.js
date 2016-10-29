@@ -33,23 +33,35 @@ function preload(){
 
 function create(){
 	game.stage.backgroundColor = '#78AB46';
+	game.stage.disableVisibilityChange = true;
 	game.physics.startSystem(Phaser.Physics.ARCADE);
 
 	q = new Quaffle(game);
 
-	//cursors = game.input.keyboard.createCursorKeys();
+	cursors = game.input.keyboard.createCursorKeys();
 }
 
 function update(){
+	if(w.length == 0 && (cursors.left.isDown || cursors.right.isDown)){
+		w.push(new Witch(game));
+	}
 	w.forEach(w => {
-		w.update(game, acInputs[w.deviceId]);
+		w.update(game, acInputs[w.deviceId] || keyboardDirection());
 	});
+}
+
+function keyboardDirection(){
+	return cursors.left.isDown ?
+		-200 :
+		cursors.right.isDown ?
+			200 :
+			0;
 }
 
 var airconsole = new AirConsole();
 
 airconsole.onConnect = deviceId => {
-	w[deviceId] = new Witch(game, deviceId);
+	w.push(new Witch(game, deviceId));
 };
 
 airconsole.onMessage = (deviceId, data) => {
