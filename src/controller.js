@@ -3,6 +3,8 @@ navigator.vibrate = (navigator.vibrate ||
                      navigator.mozVibrate ||
                      navigator.msVibrate);
 var airconsole;
+
+const turnAngle = 200;
 /**
  * Sets up the communication to the screen.
  */
@@ -32,7 +34,6 @@ window.onload = () => {
     function move(amount) {
         var toMove = amount;
         return function(){
-            console.log("moving: ", toMove);
             airconsole.message(AirConsole.SCREEN, {move: toMove})
         }        
     }    
@@ -41,14 +42,14 @@ window.onload = () => {
         airconsole.message(AirConsole.SCREEN, {dash: 200});
     }
 
-    document.getElementById("div-right").addEventListener("touchstart", move(50), false);
+    document.getElementById("div-right").addEventListener("touchstart", move(turnAngle), false);
     document.getElementById("div-right").addEventListener("touchend", move(0), false);
-    document.getElementById("div-right").addEventListener("mousedown", move(50), false);
+    document.getElementById("div-right").addEventListener("mousedown", move(turnAngle), false);
     document.getElementById("div-right").addEventListener("mouseup", move(0), false);
 
-    document.getElementById("div-left").addEventListener("touchstart", move(-50), false);
+    document.getElementById("div-left").addEventListener("touchstart", move(-turnAngle), false);
     document.getElementById("div-left").addEventListener("touchend", move(0), false);
-    document.getElementById("div-left").addEventListener("mousedown", move(-50), false);
+    document.getElementById("div-left").addEventListener("mousedown", move(-turnAngle), false);
     document.getElementById("div-left").addEventListener("mouseup", move(0), false);
 
     document.getElementById("div-dash").addEventListener("touchstart", dash, false);

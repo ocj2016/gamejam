@@ -1,6 +1,7 @@
 const cruisingVelocity = 300;
 
-function witch(game){
+function witch(game, deviceId){
+    this.deviceId = deviceId;
     this.quaffle = false;
 
     this.s = game.add.sprite(64, 64, 'witch');
@@ -15,21 +16,10 @@ function witch(game){
 }
 
 witch.prototype = {
-    update(game, cursors){
+    update(game, input){
         this.s.body.velocity.copyFrom(game.physics.arcade.velocityFromAngle(this.s.angle, cruisingVelocity));
 
-        if (cursors.left.isDown) {
-            this.s.body.angularVelocity = -200;
-        }
-        else if (cursors.right.isDown) {
-            this.s.body.angularVelocity = 200;
-        } else {
-            this.s.body.angularVelocity = 0;
-        }
-
-        if (cursors.up.isDown) {
-            
-        }
+        this.s.body.angularVelocity = input !== undefined ? input : 0;
     }
 };
 
