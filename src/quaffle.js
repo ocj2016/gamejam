@@ -1,6 +1,6 @@
 function quaffle(game){
     this.s = game.add.sprite(64, 64, 'quaffle');
-    this.s.anchor.set(0.5, 0.5);
+    this.s.scale.set(0.5);
 
     game.physics.enable(this.s, Phaser.Physics.ARCADE);
 
