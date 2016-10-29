@@ -3,6 +3,9 @@ import 'file?name=[name].[ext]!./controller.html';
 import 'file?name=[name].[ext]!./screen.html';
 import 'file?name=index.html!./screen.html';
 import 'file?name=assets/[name].[ext]!../assets/witch.png';
+import 'file?name=assets/[name].[ext]!../assets/witch2.png';
+import 'file?name=assets/[name].[ext]!../assets/wizard.png';
+import 'file?name=assets/[name].[ext]!../assets/wizard2.png';
 import 'file?name=assets/[name].[ext]!../assets/ball.png';
 
 import Witch from './witch';
@@ -22,6 +25,9 @@ const game = new Phaser.Game(800, 600, Phaser.AUTO, 'quidditch', {
 
 function preload(){
 	game.load.image('witch', 'assets/witch.png');
+	game.load.image('witch2', 'assets/witch2.png');
+	game.load.image('wizard', 'assets/wizard.png');
+	game.load.image('wizard2', 'assets/wizard2.png');
 	game.load.image('quaffle', 'assets/ball.png');
 }
 
