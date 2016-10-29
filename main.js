@@ -3,9 +3,12 @@ import 'file?name=[name].[ext]!./src/controller.html';
 import 'file?name=[name].[ext]!./src/screen.html';
 import 'file?name=index.html!./src/screen.html';
 
+let text = '';
+
 const game = new Phaser.Game(800, 600, Phaser.AUTO, 'quidditch', {
 	preload,
-	create
+	create,
+	update
 });
 
 function preload(){
@@ -13,7 +16,10 @@ function preload(){
 }
 
 function create(){
-	const text = 'Hello gamejam';
+	
+}
+
+function update(){
 	const style = {
 		fill: '#ffffff'
 	}
@@ -26,7 +32,7 @@ var deviceIds = [];
 // creation of a new AirConsole instance
 var airconsole = new AirConsole();
 // this is the listener for incoming messages
-airconsole.onMessage = function(deviceId, data) {
+airconsole.onMessage = (deviceId, data) => {
     // checking if the deviceId is already in deviceIds vector, and if it's not...
     if(deviceIds.indexOf(deviceId) == -1){
          // pushing the device id
@@ -35,5 +41,5 @@ airconsole.onMessage = function(deviceId, data) {
          document.body.innerHTML += '<h1 style = "color:white" id = "dev' + deviceId + '"></h1>'
     }
     // updating the content of the proper h1 tag according to device id and received data
-    document.getElementById("dev" + deviceId).innerHTML = "I am receiving " + data + " from  device " + deviceId;   
+    text = `I am receiving ${data} from  device ${deviceId}`;
 };
