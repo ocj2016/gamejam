@@ -1,8 +1,11 @@
 module.exports = {
-	entry: './src/main.js',
+	entry: {
+		screen: './src/screen.js',
+		controller: './src/controller.js'
+	},
 	output: {
 		path: './bin',
-		filename: 'bundle.js'
+		filename: '[name].bundle.js'
 	},
 	devtool: 'eval-source-map',
 	module: {
