@@ -1,0 +1,28 @@
+<html>
+     <head>
+          <div id="main"></div>
+          <script src="/phaser.min.js"></script>
+          <script src="/bundle.js"></script>
+          <script type="text/javascript" src="https://www.airconsole.com/api/airconsole-1.5.0.js"></script>  
+          <script type="text/javascript">
+               // creation of an empty array
+               var deviceIds = [];
+               // creation of a new AirConsole instance
+               var airconsole = new AirConsole();
+               // this is the listener for incoming messages
+               airconsole.onMessage = function(deviceId, data) {
+                    // checking if the deviceId is already in deviceIds vector, and if it's not...
+                    if(deviceIds.indexOf(deviceId) == -1){
+                         // pushing the device id
+                         deviceIds.push(deviceId);
+                         // adding a new h1 to the body
+                         document.body.innerHTML += '<h1 style = "color:white" id = "dev' + deviceId + '"></h1>'
+                    }
+                    // updating the content of the proper h1 tag according to device id and received data
+                    document.getElementById("dev" + deviceId).innerHTML = "I am receiving " + data + " from  device " + deviceId;   
+               };
+          </script>
+     </head>
+     <body>
+     </body> 
+</html>

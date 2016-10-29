@@ -1,5 +1,6 @@
 import 'file?name=[name].[ext]!phaser/build/phaser.min';
-import 'file?name=[name].[ext]!./index.html';
+import 'file?name=[name].[ext]!./src/controller.html';
+import 'file?name=[name].[ext]!./src/screen.html';
 
 const game = new Phaser.Game(800, 600, Phaser.AUTO, 'quidditch', {
 	preload,
