@@ -1,7 +1,7 @@
 import 'file?name=[name].[ext]!phaser/build/phaser.min';
-import 'file?name=[name].[ext]!./src/controller.html';
-import 'file?name=[name].[ext]!./src/screen.html';
-import 'file?name=index.html!./src/screen.html';
+import 'file?name=[name].[ext]!./controller.html';
+import 'file?name=[name].[ext]!./screen.html';
+import 'file?name=index.html!./screen.html';
 
 let text = '';
 const t = [];

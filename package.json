@@ -4,6 +4,7 @@
   "description": "jammin games",
   "main": "index.js",
   "scripts": {
+    "clean": "rm -r bin",
     "build": "webpack",
     "deploy": "./deploy.sh"
   },
