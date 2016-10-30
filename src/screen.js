@@ -7,6 +7,7 @@ import 'file?name=assets/[name].[ext]!../assets/witch2.png';
 import 'file?name=assets/[name].[ext]!../assets/wizard.png';
 import 'file?name=assets/[name].[ext]!../assets/wizard2.png';
 import 'file?name=assets/[name].[ext]!../assets/ball.png';
+import 'file?name=assets/[name].[ext]!../assets/goalSound.wav';
 
 import Witch from './witch';
 import Quaffle from './quaffle';
@@ -14,6 +15,7 @@ import { createGoals } from './goal';
 
 const w = [];
 let q;
+let goalSound;
 let goals = [];
 let teams = {
 	witch: {
@@ -43,6 +45,8 @@ function preload(){
 	game.load.image('wizard', 'assets/wizard.png');
 	game.load.image('wizard2', 'assets/wizard2.png');
 	game.load.image('quaffle', 'assets/ball.png');
+
+	game.load.audio('goalSound', 'assets/goalSound.wav');
 }
 
 function create(){
@@ -59,13 +63,15 @@ function create(){
 	teams["wizard"].displayScore = game.add.text(620, 0, "Wizards: 0", style);
 
 	goals = createGoals(game);
-
+	goalSound = game.add.audio('goalSound')
 	cursors = game.input.keyboard.createCursorKeys();
 
 	q.s.body.onCollide = new Phaser.Signal();
 	// q.s.body.onCollide.add((sprite1, sprite2) => {
 	// 	console.log(sprite1, sprite2);
 	// });
+	game.load.start(); //for audio ?
+
 }
 
 function update(){
@@ -99,7 +105,7 @@ function goalScored(t) {
 	w.forEach(w => {
 		airconsole.message(w.deviceId, {vibrate: 1000});
 	});
-	
+	goalSound.play();	
 }
 
 function keyboardDirection(){
