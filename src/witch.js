@@ -3,7 +3,14 @@ const cruisingVelocity = 300;
 const sprites = ['witch', 'wizard', 'witch2', 'wizard2'];
 let currentSprite = 0;
 
-function witch(game, deviceId){
+const startPositions = [
+    {x: 50, y:50},
+    {x: 350, y:50},
+    {x: 50, y:450},    
+    {x: 350, y:450},
+]
+
+function witch(game, deviceId, startingPosition){
     this.deviceId = deviceId;
     this.quaffle = false;
     this.team = currentSprite % 2 === 0 ? "witch" : "wizard"; 
@@ -23,6 +30,10 @@ witch.prototype = {
         this.s.body.velocity.copyFrom(game.physics.arcade.velocityFromAngle(this.s.angle, cruisingVelocity));
 
         this.s.body.angularVelocity = input !== undefined ? input : 0;
+    },
+    resetPosition(index) {
+        this.s.position.x = startPositions[index].x;
+        this.s.position.y = startPositions[index].y;
     }
 };
 

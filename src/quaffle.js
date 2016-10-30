@@ -11,6 +11,12 @@ function quaffle(game){
 quaffle.prototype = {
     update(game, cursors){
         
+    },
+    resetPosition() {
+        this.s.position.x = 384;
+        this.s.position.y = 284;
+        this.s.body.velocity.x = 0;
+        this.s.body.velocity.y = 0;
     }
 };
 

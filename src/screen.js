@@ -15,6 +15,9 @@ import { createGoals } from './goal';
 
 const w = [];
 let q;
+let enoughPlayers = false;
+let PLAYERS_NEEDED = 2;
+let GOALS_TO_WIN = 3;
 let goalSound;
 let goals = [];
 let teams = {
@@ -29,7 +32,7 @@ let teams = {
 		displayScore: "Wizards: 0"
 	}	
 };
-
+let style = { font: "bold 32px Arial", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle" };
 let cursors;
 const acInputs = {};
 
@@ -56,13 +59,10 @@ function create(){
 
 	q = new Quaffle(game);
 
-	var style = { font: "bold 32px Arial", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle" };
-
     //  The Text is positioned at 0, 100
     teams["witch"].displayScore = game.add.text(0, 0, "Witches: 0", style);
 	teams["wizard"].displayScore = game.add.text(620, 0, "Wizards: 0", style);
-
-	goals = createGoals(game);
+	
 	goalSound = game.add.audio('goalSound')
 	cursors = game.input.keyboard.createCursorKeys();
 
@@ -85,9 +85,11 @@ function update(){
 	w.forEach(w => {
 		game.physics.arcade.collide(w.s, q.s);
 	});
-	goals.forEach(g => {
-		game.physics.arcade.collide(g.s, q.s, goalCollisionHandler);
-	});
+	if(goals) {
+		goals.forEach(g => {
+			game.physics.arcade.collide(g.s, q.s, goalCollisionHandler);
+		});
+	}
 	
 }
 
@@ -98,6 +100,26 @@ function goalCollisionHandler(obj1, obj2) {
 		goalScored("witch");
 	}
 }
+
+function gameOver(winningTeam) {
+
+	let youAreWinner = game.add.text(354, 234, winningTeam.displayName + " Win!!!", style);
+	setTimeout(() => {
+		teams.witch.score = 0;
+		teams.witch.displayScore.text = teams.witch.displayName + ": " + teams.witch.score;
+
+		teams.wizard.score = 0;
+		teams.wizard.displayScore.text = teams.wizard.displayName + ": " + teams.wizard.score;
+		
+		
+		youAreWinner.destroy();
+		w.forEach((w, index) => {
+			w.resetPosition(index);
+		});
+		q.resetPosition();
+	}, 2000);
+}
+
 function goalScored(t) {
 	var team = teams[t];
 	team.score++;
@@ -106,6 +128,15 @@ function goalScored(t) {
 		airconsole.message(w.deviceId, {vibrate: 1000});
 	});
 	goalSound.play();	
+
+	w.forEach((w, index) => {
+		w.resetPosition(index);
+	});
+	q.resetPosition();
+
+	if(team.score >= GOALS_TO_WIN) {
+		gameOver(team);
+	}
 }
 
 function keyboardDirection(){
@@ -116,10 +147,27 @@ function keyboardDirection(){
 			0;
 }
 
+function maybeStartGame() {
+	var active_players = airconsole.getActivePlayerDeviceIds();
+	var connected_controllers = airconsole.getControllerDeviceIds();
+	
+	if(connected_controllers.length >= PLAYERS_NEEDED) {
+		airconsole.setActivePlayers(connected_controllers);
+		w.forEach((w, index) => {
+			w.resetPosition(index);
+		});
+		q.resetPosition();
+		
+		enoughPlayers = true;
+		goals = createGoals(game);
+	}
+}
+
 const airconsole = new AirConsole();
 
 airconsole.onConnect = deviceId => {
 	w.push(new Witch(game, deviceId));
+	maybeStartGame();
 };
 
 airconsole.onMessage = (deviceId, data) => {
