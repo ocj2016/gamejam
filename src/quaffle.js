@@ -1,4 +1,6 @@
-function quaffle(game){
+function quaffle(game, worldX, worldY){
+    this.startX = worldX/2;
+    this.startY = worldY/2;
     this.s = game.add.sprite(384, 284, 'quaffle');
     this.s.scale.set(0.5);
 
@@ -14,8 +16,8 @@ quaffle.prototype = {
         
     },
     resetPosition() {
-        this.s.position.x = 384;
-        this.s.position.y = 284;
+        this.s.position.x = this.startX;
+        this.s.position.y = this.startY;
         this.s.body.velocity.x = 0;
         this.s.body.velocity.y = 0;
     }
