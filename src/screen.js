@@ -181,14 +181,6 @@ airconsole.onConnect = deviceId => {
 };
 
 airconsole.onMessage = (deviceId, data) => {
-	if(data.dash !== undefined) {
-		w.some(w => {
-			if(w.deviceId === deviceId) {
-				game.physics.arcade.accelerationFromRotation(w.s.rotation, 10000, w.s.body.velocity);
-				return true
-			}
-		});
-	}
 	if(data.move !== undefined) {
 		acInputs[deviceId] = data.move;
 	}
