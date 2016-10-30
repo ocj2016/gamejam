@@ -14,6 +14,19 @@ import { createGoals } from './goal';
 
 const w = [];
 let q;
+let goals = [];
+let teams = {
+	witch: {
+		score: 0,
+		displayName: "Witches",
+		displayScore: "Witches: 0"
+	},
+	wizard: {
+		score: 0,
+		displayName: "Wizards",		
+		displayScore: "Wizards: 0"
+	}	
+};
 
 let cursors;
 const acInputs = {};
@@ -39,7 +52,13 @@ function create(){
 
 	q = new Quaffle(game);
 
-	createGoals(game);
+	var style = { font: "bold 32px Arial", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle" };
+
+    //  The Text is positioned at 0, 100
+    teams["witch"].displayScore = game.add.text(0, 0, "Witches: 0", style);
+	teams["wizard"].displayScore = game.add.text(620, 0, "Wizards: 0", style);
+
+	goals = createGoals(game);
 
 	cursors = game.input.keyboard.createCursorKeys();
 
@@ -60,6 +79,27 @@ function update(){
 	w.forEach(w => {
 		game.physics.arcade.collide(w.s, q.s);
 	});
+	goals.forEach(g => {
+		game.physics.arcade.collide(g.s, q.s, goalCollisionHandler);
+	});
+	
+}
+
+function goalCollisionHandler(obj1, obj2) {
+	if(obj1.name === "witch" && obj1.body.touching.right) {
+		goalScored("wizard");
+	} else if(obj1.name === "wizard" && obj1.body.touching.left) {
+		goalScored("witch");
+	}
+}
+function goalScored(t) {
+	var team = teams[t];
+	team.score++;
+	team.displayScore.text = team.displayName + ": " + team.score;
+	w.forEach(w => {
+		airconsole.message(w.deviceId, {vibrate: 1000});
+	});
+	
 }
 
 function keyboardDirection(){

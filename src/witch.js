@@ -1,12 +1,12 @@
 const cruisingVelocity = 300;
 
-const sprites = ['witch', 'witch2', 'wizard', 'wizard2'];
+const sprites = ['witch', 'wizard', 'witch2', 'wizard2'];
 let currentSprite = 0;
 
 function witch(game, deviceId){
     this.deviceId = deviceId;
     this.quaffle = false;
-
+    this.team = currentSprite % 2 === 0 ? "witch" : "wizard"; 
     this.s = game.add.sprite(64, 64, sprites[currentSprite++ % 4]);
     this.s.anchor.set(0.5, 0.5);
 
