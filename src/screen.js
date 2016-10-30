@@ -91,6 +91,7 @@ function update(){
 		});
 	}
 	
+	q.update();	
 }
 
 function goalCollisionHandler(obj1, obj2) {
@@ -176,5 +177,17 @@ airconsole.onMessage = (deviceId, data) => {
 	}
 	if(data.move !== undefined) {
 		acInputs[deviceId] = data.move;
+	}
+
+	if(data.dash !== undefined) {
+		let witch;
+		w.some(w => {
+			witch = w.deviceId == deviceId ? w : null;
+			return witch;
+		});
+
+		if(witch){
+			witch.dash(game);
+		}
 	}
 };

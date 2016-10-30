@@ -1,4 +1,6 @@
 const cruisingVelocity = 300;
+const dashVelocity = 1000;
+const boostDrag = 25;
 
 const sprites = ['witch', 'wizard', 'witch2', 'wizard2'];
 let currentSprite = 0;
@@ -27,13 +29,22 @@ function witch(game, deviceId, startingPosition){
 
 witch.prototype = {
     update(game, input){
-        this.s.body.velocity.copyFrom(game.physics.arcade.velocityFromAngle(this.s.angle, cruisingVelocity));
+        let velocity = this.s.body.velocity.getMagnitude();
+        velocity = velocity > cruisingVelocity ?
+            velocity - boostDrag :
+            velocity < cruisingVelocity ?
+                cruisingVelocity :
+                velocity;
+        this.s.body.velocity.copyFrom(game.physics.arcade.velocityFromAngle(this.s.angle, velocity));
 
         this.s.body.angularVelocity = input !== undefined ? input : 0;
     },
     resetPosition(index) {
         this.s.position.x = startPositions[index].x;
         this.s.position.y = startPositions[index].y;
+    },
+    dash(game){
+        game.physics.arcade.accelerationFromRotation(this.s.rotation, dashVelocity, this.s.body.velocity);
     }
 };
 
