@@ -1,4 +1,4 @@
-function goal(game, pos){
+function goal(game, pos, name){
 	const bitmapData = game.add.bitmapData(10,128);
 
     bitmapData.ctx.beginPath();
@@ -7,8 +7,9 @@ function goal(game, pos){
     bitmapData.ctx.fill();
 
     this.s = game.add.sprite(pos.x, pos.y, bitmapData);
-
     game.physics.enable(this.s, Phaser.Physics.ARCADE);
+    this.s.name = name;
+    this.s.body.immovable = true;
 }
 
 goal.prototype = {
@@ -19,8 +20,8 @@ goal.prototype = {
 
 export function createGoals(game){
 	return [
-		new goal(game, { x: 50, y: 236 }),
-		new goal(game, { x: 740, y: 236 }),
+		new goal(game, { x: 50, y: 236 }, "witch"),
+		new goal(game, { x: 740, y: 236 }, "wizard"),
 	];
 }
 
