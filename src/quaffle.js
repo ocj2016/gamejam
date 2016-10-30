@@ -5,7 +5,8 @@ function quaffle(game){
     game.physics.enable(this.s, Phaser.Physics.ARCADE);
 
     this.s.body.collideWorldBounds = true;
-    this.s.body.bounce.set(0.8);
+    this.s.body.bounce.set(1);
+    this.s.body.drag.set(32);
 }
 
 quaffle.prototype = {
