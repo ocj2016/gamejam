@@ -21,8 +21,8 @@ import { createGoals } from './goal';
 const w = [];
 let q;
 let enoughPlayers = false;
-let PLAYERS_NEEDED = 3;
-let GOALS_TO_WIN = 1;
+let PLAYERS_NEEDED = 2;
+let GOALS_TO_WIN = 3;
 let goalSound;
 let worldX = 1024;
 let worldY = 768;
@@ -127,7 +127,7 @@ function goalCollisionHandler(obj1, obj2) {
 function gameOver(winningTeam) {
 
 	//let youAreWinner = game.add.text(worldX/2, worldY/2, winningTeam.displayName + " Win!!!", style);
-	let youAreWinner = game.add.sprite((worldX/2)-128, worldY/2, winTitle);
+	let youAreWinner = game.add.sprite((worldX/2)-128, worldY/2, winningTeam.winTitle);
 	setTimeout(() => {
 		teams.witch.score = 0;
 		teams.witch.displayScore.text = teams.witch.displayName + ": " + teams.witch.score;
