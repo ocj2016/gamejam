@@ -9,6 +9,7 @@ function quaffle(game, worldX, worldY){
     this.s.body.collideWorldBounds = true;
     this.s.body.bounce.set(1);
     this.s.body.drag.set(32);
+    this.s.body.maxVelocity.set(100);
 }
 
 quaffle.prototype = {
