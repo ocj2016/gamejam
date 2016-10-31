@@ -110,7 +110,7 @@ function update(){
 		});
 	}
 	
-	q.update();	
+	q.update();
 }
 
 function goalCollisionHandler(obj1, obj2) {
