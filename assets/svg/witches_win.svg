@@ -11,15 +11,12 @@
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="744.09448819"
    height="1052.3622047"
-   id="svg4864"
+   id="svg3796"
    version="1.1"
    inkscape:version="0.48.5 r10040"
-   sodipodi:docname="ball.svg"
-   inkscape:export-filename="C:\Users\Marco\Desktop\ball.png"
-   inkscape:export-xdpi="30.67"
-   inkscape:export-ydpi="30.67">
+   sodipodi:docname="New document 4">
   <defs
-     id="defs4866" />
+     id="defs3798" />
   <sodipodi:namedview
      id="base"
      pagecolor="#ffffff"
@@ -27,9 +24,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.4"
-     inkscape:cx="214.82063"
-     inkscape:cy="622.41191"
+     inkscape:zoom="4"
+     inkscape:cx="341.20204"
+     inkscape:cy="965.02799"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -39,14 +36,14 @@
      inkscape:window-y="-8"
      inkscape:window-maximized="1" />
   <metadata
-     id="metadata4869">
+     id="metadata3801">
     <rdf:RDF>
       <cc:Work
          rdf:about="">
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -54,25 +51,16 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1">
-    <path
-       sodipodi:type="arc"
-       style="fill:#800000;fill-opacity:1;fill-rule:nonzero;stroke:#aa0000;stroke-width:5;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
-       id="path5382"
-       sodipodi:cx="107.07617"
-       sodipodi:cy="380.10565"
-       sodipodi:rx="44.446712"
-       sodipodi:ry="39.901024"
-       d="m 151.52288,380.10565 a 44.446712,39.901024 0 1 1 -88.893421,0 44.446712,39.901024 0 1 1 88.893421,0 z"
-       transform="matrix(0.90051501,0,0,1.0031059,188.9639,38.819399)" />
-    <path
-       sodipodi:type="arc"
-       style="fill:#aa0000;fill-opacity:1;fill-rule:nonzero;stroke:none"
-       id="path5384"
-       sodipodi:cx="122.85714"
-       sodipodi:cy="443.43362"
-       sodipodi:rx="32.857143"
-       sodipodi:ry="28.214285"
-       d="m 155.71428,443.43362 a 32.857143,28.214285 0 1 1 -65.714284,0 32.857143,28.214285 0 1 1 65.714284,0 z"
-       transform="matrix(0.35276481,0,0,0.38091418,228.6309,228.38213)" />
+    <text
+       xml:space="preserve"
+       style="font-size:40px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#aa00d4;fill-opacity:1;stroke:#000000;font-family:Curlz MT;-inkscape-font-specification:Curlz MT;stroke-opacity:1"
+       x="243.44676"
+       y="76.554825"
+       id="text3804"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3806"
+         x="243.44676"
+         y="76.554825">Witches win!</tspan></text>
   </g>
 </svg>
