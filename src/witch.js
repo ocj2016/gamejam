@@ -21,8 +21,8 @@ function witch(game, deviceId, startingPosition){
 
     game.physics.enable(this.s, Phaser.Physics.ARCADE);
 
+    this.s.body.setCircle(30);
     this.s.body.collideWorldBounds = true;
-    this.s.body.bounce.set(0.5);
     this.s.body.allowRotation = true;
     this.s.body.immovable = true;
 }

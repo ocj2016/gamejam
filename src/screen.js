@@ -89,9 +89,6 @@ function create(){
 	cursors = game.input.keyboard.createCursorKeys();
 
 	q.s.body.onCollide = new Phaser.Signal();
-	// q.s.body.onCollide.add((sprite1, sprite2) => {
-	// 	console.log(sprite1, sprite2);
-	// });
 	game.load.start(); //for audio ?
 
 }
