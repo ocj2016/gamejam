@@ -9,6 +9,9 @@ import 'file?name=assets/[name].[ext]!../assets/wizard2.png';
 import 'file?name=assets/[name].[ext]!../assets/ball.png';
 import 'file?name=assets/[name].[ext]!../assets/vorpal32.png';
 import 'file?name=assets/[name].[ext]!../assets/map.png';
+import 'file?name=assets/[name].[ext]!../assets/Waiting.png';
+import 'file?name=assets/[name].[ext]!../assets/witches_win.png';
+import 'file?name=assets/[name].[ext]!../assets/wizards_win.png';
 import 'file?name=assets/[name].[ext]!../assets/goalSound.wav';
 
 import Witch from './witch';
@@ -18,22 +21,25 @@ import { createGoals } from './goal';
 const w = [];
 let q;
 let enoughPlayers = false;
-let PLAYERS_NEEDED = 2;
-let GOALS_TO_WIN = 3;
+let PLAYERS_NEEDED = 3;
+let GOALS_TO_WIN = 1;
 let goalSound;
 let worldX = 1024;
 let worldY = 768;
 let goals = [];
+let waitingText;
 let teams = {
 	witch: {
 		score: 0,
 		displayName: "Witches",
-		displayScore: "Witches: 0"
+		displayScore: "Witches: 0",
+		winTitle: "witches_win"
 	},
 	wizard: {
 		score: 0,
 		displayName: "Wizards",		
-		displayScore: "Wizards: 0"
+		displayScore: "Wizards: 0",
+		winTitle: "wizards_win"
 	}	
 };
 let style = { font: "bold 32px Arial", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle" };
@@ -54,6 +60,9 @@ function preload(){
 	game.load.image('quaffle', 'assets/ball.png');
 	game.load.image('vorpal32', 'assets/vorpal32.png');
 	game.load.image('map', 'assets/map.png');
+	game.load.image('waiting', 'assets/Waiting.png');
+	game.load.image('witches_win', 'assets/witches_win.png');
+	game.load.image('wizards_win', 'assets/wizards_win.png');
 
 	game.load.audio('goalSound', 'assets/goalSound.wav');
 }
@@ -65,7 +74,7 @@ function create(){
 	let map = game.add.sprite(0, 0, 'map');
 	map.scale.setTo((worldX/32), (worldY/18));
 	map.sendToBack();
-	
+	waitingText = game.add.sprite((worldX/2)-128, 100, 'waiting');
 	game.physics.startSystem(Phaser.Physics.ARCADE);
 
 	q = new Quaffle(game, worldX, worldY);
@@ -117,7 +126,8 @@ function goalCollisionHandler(obj1, obj2) {
 
 function gameOver(winningTeam) {
 
-	let youAreWinner = game.add.text(354, 234, winningTeam.displayName + " Win!!!", style);
+	//let youAreWinner = game.add.text(worldX/2, worldY/2, winningTeam.displayName + " Win!!!", style);
+	let youAreWinner = game.add.sprite((worldX/2)-128, worldY/2, winTitle);
 	setTimeout(() => {
 		teams.witch.score = 0;
 		teams.witch.displayScore.text = teams.witch.displayName + ": " + teams.witch.score;
@@ -165,6 +175,7 @@ function maybeStartGame() {
 	var connected_controllers = airconsole.getControllerDeviceIds();
 	
 	if(connected_controllers.length >= PLAYERS_NEEDED) {
+		waitingText.destroy();
 		airconsole.setActivePlayers(connected_controllers);
 		resetWitchPositions();
 		q.resetPosition();		

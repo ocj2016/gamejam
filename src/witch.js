@@ -7,9 +7,9 @@ let currentSprite = 0;
 
 const startPositions = [
     {x: 50, y:50},
-    {x: 350, y:50},
-    {x: 50, y:450},    
-    {x: 350, y:450},
+    {x: 950, y:50},
+    {x: 50, y:650},    
+    {x: 950, y:650},
 ]
 
 function witch(game, deviceId, startingPosition){
