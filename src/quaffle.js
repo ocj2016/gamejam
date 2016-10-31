@@ -1,7 +1,7 @@
 function quaffle(game, worldX, worldY){
     this.startX = worldX/2;
     this.startY = worldY/2;
-    this.s = game.add.sprite(384, 284, 'quaffle');
+    this.s = game.add.sprite(this.startX, this.startY, 'quaffle');
     this.s.scale.set(0.5);
 
     game.physics.enable(this.s, Phaser.Physics.ARCADE);
